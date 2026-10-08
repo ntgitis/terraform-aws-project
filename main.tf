@@ -1,17 +1,16 @@
 terraform {
   backend "s3" {
     bucket = "terraform-s3-nam-07102026" 
-    key    = "dev/terraform.tfstate" # Đường dẫn lưu file trên S3
+    key    = "dev/terraform.tfstate" 
     region = "us-east-1"
   }
 }
 
-# khai báo kết nối với AWS ở vùng us-east-1
 provider "aws" {
     region = "us-east-1"
 }
 
-# Tạo Mạng ảo riêng (VPC)
+#vpc
 resource "aws_vpc" "my_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -22,7 +21,7 @@ resource "aws_vpc" "my_vpc" {
   }
 }
 
-# Tạo Kho chứa dữ liệu (S3 Bucket)
+#S3 Bucket
 resource "aws_s3_bucket" "my_bucket" {
   bucket = "terraform-s3-nam-07102026" 
 
@@ -30,3 +29,4 @@ resource "aws_s3_bucket" "my_bucket" {
     Environment = "Dev"
   }
 }
+
