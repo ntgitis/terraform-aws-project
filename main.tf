@@ -3,11 +3,19 @@ terraform {
     bucket = "terraform-s3-nam-07102026" 
     key    = "dev/terraform.tfstate" 
     region = "us-east-1"
+    
+    assume_role = {
+      role_arn = "arn:aws:iam::673478369974:role/Terraform-Role"
+    }
   }
 }
 
 provider "aws" {
     region = "us-east-1"
+    assume_role {
+      role_arn = "arn:aws:iam::673478369974:role/Terraform-Role"
+      session_name = "TerraformSession"
+    }
 }
 
 #vpc
