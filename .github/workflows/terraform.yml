@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: ["main"]
 
-# Cấp quyền cho GitHub phát ra OIDC Token
+# Cấp quyền cho GitHub Actions phát hành OIDC token
 permissions:
   id-token: write
   contents: read
@@ -18,7 +18,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Xác thực không mật khẩu với AWS qua OIDC
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
